@@ -1,0 +1,29 @@
+# Production data layer: Postgres + PostGIS + TimescaleDB in one image.
+# The MVP runs entirely in-memory (canopy/store.py) with zero dependencies;
+# this is the drop-in for when you want the real signature library persisted.
+#
+#   docker compose up -d
+#   # schema is applied automatically from db/ on first boot
+#
+services:
+  db:
+    image: timescale/timescaledb-ha:pg16
+    container_name: canopy-db
+    environment:
+      POSTGRES_USER: canopy
+      POSTGRES_PASSWORD: canopy
+      POSTGRES_DB: canopy
+    ports:
+      - "5432:5432"
+    volumes:
+      - canopy_pgdata:/home/postgres/pgdata/data
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/10_schema.sql:ro
+      - ./db/seed.sql:/docker-entrypoint-initdb.d/20_seed.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U canopy"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  canopy_pgdata:

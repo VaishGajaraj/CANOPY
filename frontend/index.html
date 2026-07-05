@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CANOPY — emissions-audit view</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="brand">
+      <span class="logo">◊</span>
+      <div>
+        <div class="title">CANOPY</div>
+        <div class="subtitle">multi-INT signature platform — emissions-audit view</div>
+      </div>
+    </div>
+    <div id="exercise-meta"></div>
+    <div class="live"><span id="live-dot" class="dot"></span><span id="live-label">connecting…</span></div>
+  </header>
+
+  <main>
+    <section id="map-pane">
+      <div id="map-head">
+        <span class="pane-title">LIVE OVERLAY — "as the adversary's SIGINT would see you"</span>
+        <span class="hint">bearings · fused fixes with honest error ellipses · SAR patches</span>
+      </div>
+      <canvas id="plot"></canvas>
+      <div id="legend"></div>
+      <div id="tooltip" class="hidden"></div>
+    </section>
+
+    <aside id="report-pane">
+      <div class="pane-title">AFTER-ACTION REPORT</div>
+
+      <div id="score-card">
+        <div id="score-gauge">
+          <svg viewBox="0 0 120 120" width="120" height="120">
+            <circle cx="60" cy="60" r="52" class="gauge-bg"/>
+            <circle cx="60" cy="60" r="52" class="gauge-fg" id="gauge-arc"/>
+          </svg>
+          <div id="score-num"><span id="score-value">–</span><span class="score-max">/100</span></div>
+        </div>
+        <div id="score-side">
+          <div class="score-label">TARGETABILITY SCORE</div>
+          <div id="worst-line" class="muted">—</div>
+          <div id="multi-int" class="badge-row"></div>
+        </div>
+      </div>
+
+      <div class="section-title">Worst offenders</div>
+      <div id="offenders"></div>
+
+      <div class="section-title">Detection timeline</div>
+      <div id="timeline"></div>
+      <div id="peak-window" class="muted small"></div>
+
+      <div class="section-title">Score methodology</div>
+      <div id="methodology" class="small"></div>
+
+      <div class="section-title">Library</div>
+      <div id="counts" class="small"></div>
+
+      <div id="actions">
+        <button id="btn-cot">View CoT feed (TAK)</button>
+        <a id="btn-json" href="/api/report" target="_blank">Raw report JSON</a>
+      </div>
+    </aside>
+  </main>
+
+  <div id="cot-modal" class="hidden">
+    <div class="modal-inner">
+      <div class="modal-head"><span>CoT event feed → TAK Server / ATAK</span><button id="cot-close">✕</button></div>
+      <pre id="cot-body"></pre>
+    </div>
+  </div>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>

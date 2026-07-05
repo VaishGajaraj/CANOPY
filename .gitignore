@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# OS / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# Runtime / data
+*.log
+*.pdf
+data/
+captures/
+*.iq
+*.sigmf-*
+
+# Secrets — never commit credentials (Earthdata, TAK certs, etc.)
+.env
+*.pem
+*.p12
+secrets/

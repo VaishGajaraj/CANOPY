@@ -1,0 +1,23 @@
+# The MVP core (canopy/, edge/, nisar/, tests/, the live server) runs on the
+# Python 3.9+ STANDARD LIBRARY ONLY — no install required. `make demo` and
+# `make test` work out of the box.
+#
+# These are the OPTIONAL production dependencies for the paths the MVP stubs:
+
+# --- persistent signature library (swap canopy/store.py for a psycopg repo) ---
+# psycopg[binary]>=3.1        # Postgres + PostGIS + TimescaleDB (docker-compose.yml)
+
+# --- production API layer (swap canopy/server.py) -----------------------------
+# fastapi>=0.110
+# uvicorn[standard]>=0.29
+
+# --- TAK / Cursor-on-Target output --------------------------------------------
+# pytak>=6.0                  # speak CoT to a TAK Server without hand-writing XML
+
+# --- edge node (real KrakenSDR hardware, v0) ----------------------------------
+# numpy>=1.24                 # faster PSD/feature math than the stdlib fallback
+# SoapySDR                    # (system package) KrakenSDR Heimdall DAQ front end
+
+# --- NISAR thin slice (real Earthdata coherence, built last) ------------------
+# asf-search>=7.0             # pull free NISAR L-band pairs from ASF DAAC
+# isce2 / mintpy  or  esa-snappy   # interferometric coherence (system install)
