@@ -103,6 +103,53 @@ targetability score, plus one NISAR coherence screen into the same library.
 classifiers, 2.4/5.8 GHz bands, precision geolocation, and NISAR-as-a-product.
 See the spec's cut table for why and when each returns.
 
+## Defense applications
+
+The wedge is **EMCON / OPSEC training** — but the same capability, the same
+signature library, and the same TAK output serve a ladder of defense missions.
+Each row below is tied to a capability that already exists in this MVP, so the
+transition path is concrete, not aspirational. The scoping stays deliberate:
+**friendly-force, training-side, claim-disciplined** (see
+[`docs/governance.md`](docs/governance.md)).
+
+### Available today (the RF wedge in this repo)
+
+| Application | Mission value | Uses in the MVP |
+| --- | --- | --- |
+| **Emissions-control (EMCON) training** | Show a unit how detectable it is and grade its signal discipline objectively, so it improves before it matters | targetability score, after-action report, worst-offenders ranking |
+| **Pre-mission signature rehearsal** | "How will I look to the adversary's SIGINT?" — model a CP or route's emissions footprint before stepping off | live overlay, per-emitter detection range, error ellipses |
+| **CTC / home-station AAR instrumentation** | Objective, repeatable EW-discipline scoring for training rotations instead of subjective observer notes | exercise timeline, peak-detectability window, PDF/JSON report |
+| **GPS-jamming / interference detection** | Passively flag GPS L1 (1575.42 MHz) jamming and other interference in the training area — a wedge on its own | `gps_anomaly` classifier + geolocation of the jammer |
+| **Unauthorized-device / force protection** | Catch personal phones and rogue emitters brought into an area they shouldn't be (the "soldier's cell left on" case) | cellular-uplink detection, persistent `watches` on a signature |
+| **Live SIGINT picture in ATAK** | Push emitter locations with *honest* uncertainty straight into the map operators already use | Cursor-on-Target export → TAK Server / ATAK |
+
+### With the v1 wideband front-end (HackRF)
+
+| Application | Mission value |
+| --- | --- |
+| **Counter-UAS cueing** | Detect and bearing drone control/video links (2.4 / 5.8 GHz) and cue an effector or shooter |
+| **Broader spectrum survey** | Base/AO spectrum management — find what's radiating across a wider band than the RTL-SDR wedge covers |
+
+### The platform play (multi-INT, the reason it's a company)
+
+| Application | Mission value | Uses in the MVP |
+| --- | --- | --- |
+| **Pattern-of-life monitoring of a fixed site** | Fuse RF emitters with satellite-radar ground disturbance to watch an AOI over a campaign, not a moment | NISAR L-band coherence patches written into the **same** library |
+| **Multi-INT fusion testbed** | A sensor-agnostic library that any new INT files into unchanged — the foundation defense buyers actually want | schema-parity invariant (`test_schema_parity.py`) |
+
+### Transition customers
+
+Army/USMC EW and ISR units (incl. Guard/Reserve), SOF, range and CTC training
+commands, base spectrum managers, and force-protection elements. A letter of
+support from any Guard/Reserve EW or ISR unit is disproportionately valuable for
+the SBIR transition narrative (spec §13); the governance posture in
+[`docs/governance.md`](docs/governance.md) goes in the commercialization volume.
+
+> **Claim discipline.** These are transition *paths* built on the MVP's proven
+> primitives — not fielded capabilities. Every location carries its error
+> ellipse and every score prints its assumptions; a locator's precision is never
+> oversold.
+
 ## Honest limitations
 
 - This is a **locator**; the friendly-audit framing is the benign face of a
